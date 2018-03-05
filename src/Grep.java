@@ -26,24 +26,25 @@ public class Grep {
 			for(int i=0; i<x.length; i++) {
 				//System.out.println(lineSplit[i]);
 				if(x[i] == 'T') {
-					System.out.println(i+"T");
+					//System.out.println(i+"T");
 	
 					if(x[i+1] == 'a') {
-						System.out.println(i+1+"a");
+						//System.out.println(i+1+"a");
 	
 						if(x[i+2] == 'm') {
-							System.out.println(i+2+"m");
+							//System.out.println(i+2+"m");
 	
-							if(x[i+3] == 'm') {
-								System.out.println(i+3+"m");
+							if(x[i+4] == 'u') {
+								//System.out.println(i+4+"u");
 								
-								if(x[i+4] == 'u') {
-									System.out.println(i+4+"u");
+								if(x[i+5] == 'z') {
+									//System.out.println(i+5+"z");
 									
-									if(x[i+5] == 'z') {
-										System.out.println(i+5+"z");
-										System.out.println("true");
+									for(int j=0;j<6;j++) {
+										System.out.println(x[i+j]);
 									}
+									
+									System.out.println("true");
 								}
 							}
 						}
@@ -51,7 +52,7 @@ public class Grep {
 				}
 			}
 		}catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("tkt");
+			
 		}
 	}
 	

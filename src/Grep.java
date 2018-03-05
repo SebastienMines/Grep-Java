@@ -16,28 +16,42 @@ public class Grep {
 	}
 
 	public void splitText(String regex, String line) {
+		
 		// TODO Auto-generated method stub
 		ArrayList<String> result = new ArrayList<>();
-		//System.out.println(line);
+
 		char[] x = line.toCharArray();
-		for(int i=0; i<x.length; i++) {
-			//System.out.println(lineSplit[i]);
-			if(x[i] == 'z') {
-				//System.out.println(x[i]);
-				int j=i-1;
-				if(x[j]=='u') {
-					//System.out.println(j);
-					int k =j-1;
-					if(x[k]=='m') {
-						System.out.println(x[k]);
-						//System.out.println(j);
-						int l =k-1;
-						if(x[l]=='m') {
-							System.out.println(x[l]);
+		
+		try {
+			for(int i=0; i<x.length; i++) {
+				//System.out.println(lineSplit[i]);
+				if(x[i] == 'T') {
+					System.out.println(i+"T");
+	
+					if(x[i+1] == 'a') {
+						System.out.println(i+1+"a");
+	
+						if(x[i+2] == 'm') {
+							System.out.println(i+2+"m");
+	
+							if(x[i+3] == 'm') {
+								System.out.println(i+3+"m");
+								
+								if(x[i+4] == 'u') {
+									System.out.println(i+4+"u");
+									
+									if(x[i+5] == 'z') {
+										System.out.println(i+5+"z");
+										System.out.println("true");
+									}
+								}
+							}
 						}
 					}
 				}
 			}
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("tkt");
 		}
 	}
 	

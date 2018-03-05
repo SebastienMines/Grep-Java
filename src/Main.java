@@ -8,8 +8,7 @@ public class Main {
 		
 		Grep grep = new Grep("Ta.*z","file.txt");
 		grep.readFile();
-		
-		System.out.println("Regex: "+grep.getRegex()+", Texte: "+ grep.getTexte());
+		//System.out.println("Regex: "+grep.getRegex()+", Texte: "+ grep.getTexte());
 	}
 
 }

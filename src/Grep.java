@@ -16,6 +16,28 @@ public class Grep {
 	}
 
 	public void splitText(String line) {
+//		char[][] res = 
+//			{
+//					{'T', 0, 0, 0, 0, 0},
+//					{0,'a', 0, 0, 0, 0},
+//					{0, 0, 'm', 0, 0, 0},
+//					{0, 0, 0, 'm', 0, 0},
+//					{0, 0, 0, 0, 'u', 0},
+//					{0, 0, 0, 0, 0, 'z'}
+//			};
+//		// TODO Auto-generated method stub
+//		char[] regex = this.getRegex().toCharArray();
+//		char[] x = line.toCharArray();
+//		
+//		for(int i=0; i<x.length; i++) {
+//			//System.out.println(lineSplit[i]);
+//			for(int j=0; j<this.regex.length(); j++) {
+//				//System.out.println("Bla");
+//				if(res[j][j] == x[i+1]) {
+//					System.out.println(res[j][j]+" - "+x[i+j]);
+//				}
+//			}
+//		}
 		try {
 
 			// TODO Auto-generated method stub

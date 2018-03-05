@@ -6,6 +6,13 @@ import java.util.ArrayList;
 
 public class Grep {
 	
+	private String regex;
+	private String file;
+	
+	public Grep(String regex, String file) {
+		this.regex = new String(regex);
+		this.file = new String(file);
+	}
 
 	public void splitText(String word, String text) {
 		// TODO Auto-generated method stub
@@ -14,8 +21,9 @@ public class Grep {
 		
 	}
 	
-	public void readFile(String file) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader(file));
+	public void readFile() throws IOException {
+		
+		BufferedReader br = new BufferedReader(new FileReader(this.file));
 		try {
 		    StringBuilder sb = new StringBuilder();
 		    String line = br.readLine();
@@ -30,5 +38,10 @@ public class Grep {
 		} finally {
 		    br.close();
 		}
+	}
+	
+	public boolean regex() {
+		
+		return true;
 	}
 }

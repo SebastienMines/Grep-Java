@@ -15,14 +15,13 @@ public class Grep {
 		this.texte = new String("");
 	}
 
-	public void splitText(String regex, String line) {
-		
-		// TODO Auto-generated method stub
-		ArrayList<String> result = new ArrayList<>();
-
-		char[] x = line.toCharArray();
-		
+	public void splitText(String line) {
 		try {
+
+			// TODO Auto-generated method stub
+			char[] regex = this.getRegex().toCharArray();
+			char[] x = line.toCharArray();
+			
 			for(int i=0; i<x.length; i++) {
 				//System.out.println(lineSplit[i]);
 				if(x[i] == 'T') {
@@ -51,8 +50,8 @@ public class Grep {
 					}
 				}
 			}
-		}catch(ArrayIndexOutOfBoundsException e) {
-			
+		}catch(ArrayIndexOutOfBoundsException | NullPointerException e) {
+
 		}
 	}
 	
@@ -63,6 +62,7 @@ public class Grep {
 		try {
 			
 		    StringBuilder sb = new StringBuilder();
+		    this.setTexte(this.getTexte() + br.readLine());
 		    String line = br.readLine();
 
 		    while (line != null) {
@@ -70,8 +70,10 @@ public class Grep {
 		        sb.append(line);
 		        sb.append(System.lineSeparator());
 		        line = br.readLine();
+			    this.setTexte(this.getTexte() + br.readLine());
+
 		        //System.out.println(line);
-		        splitText("T", line);
+		        splitText(this.texte);
 		        
 		    }
 		    

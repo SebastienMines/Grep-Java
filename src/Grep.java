@@ -15,10 +15,30 @@ public class Grep {
 		this.texte = new String("");
 	}
 
-	public void splitText() {
+	public void splitText(String regex, String line) {
 		// TODO Auto-generated method stub
 		ArrayList<String> result = new ArrayList<>();
-			
+		//System.out.println(line);
+		char[] x = line.toCharArray();
+		for(int i=0; i<x.length; i++) {
+			//System.out.println(lineSplit[i]);
+			if(x[i] == 'z') {
+				//System.out.println(x[i]);
+				int j=i-1;
+				if(x[j]=='u') {
+					//System.out.println(j);
+					int k =j-1;
+					if(x[k]=='m') {
+						System.out.println(x[k]);
+						//System.out.println(j);
+						int l =k-1;
+						if(x[l]=='m') {
+							System.out.println(x[l]);
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	public void readFile() throws IOException {
@@ -35,10 +55,12 @@ public class Grep {
 		        sb.append(line);
 		        sb.append(System.lineSeparator());
 		        line = br.readLine();
+		        //System.out.println(line);
+		        splitText("T", line);
 		        
 		    }
 		    
-		    this.texte = sb.toString();
+		    //this.texte = sb.toString();
 		    
 		} finally {
 		    br.close();

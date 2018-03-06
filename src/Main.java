@@ -3,6 +3,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -56,11 +58,20 @@ public class Main {
 			
 			if (m.findHtml(line)) {
 				//System.out.println(inputStream.getLineNumber() + " : " + line);
-				String[] tab = line.split("<a href=\".*\">");
-				for(int i = 0; i < tab.length; i++){
-					System.out.println(inputStream.getLineNumber() + " : " + tab[i]);
-
+				String pattern = "(http)(:\\/\\/\\w*.)(\\d*)(\\w*.\\w*)";
+				Pattern r = Pattern.compile(pattern);
+				
+				Matcher ma = r.matcher(line);
+				if(ma.find( )) {
+					System.out.println(ma.group(0));
 				}
+				else {
+					System.out.println("No match");
+				}
+//				String[] tab = line.split("<a href=\".*\">");
+//				for(int i = 0; i < tab.length; i++){
+//					System.out.println(inputStream.getLineNumber() + " : " + tab[i]);
+//				}
 
 			}
 			

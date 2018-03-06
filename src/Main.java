@@ -71,12 +71,26 @@ public class Main {
 					for(int i = 2; i < tab.length; i++){
 						
 						if( i >= 2) {
-							System.out.println(inputStream.getLineNumber() + " : " + tab[i] + "/");
+							//System.out.println(inputStream.getLineNumber() + " : " + tab[i] + "/");
 						}
 					}
 				}
 				else {
-					System.out.println("No match");
+					//System.out.println("No match");
+				}
+				
+				String pattern2 = "((http)(:\\/\\/\\w*.)(\\d*)(\\w*.\\w*))|((https)(:\\/\\/\\w*.)(\\w*.)(\\w*.\\w*))";
+				Pattern r2 = Pattern.compile(pattern2);
+				
+				Matcher ma2 = r2.matcher(line);
+				if(ma2.find( )) {
+					if(ma2.group(5) == null)
+						System.out.println(ma2.group(10)+" | "+ma2.group(0));
+					else
+						System.out.println(ma2.group(5)+" | "+ma2.group(0));
+				}
+				else {
+					//System.out.println("No match");
 				}
 
 			}

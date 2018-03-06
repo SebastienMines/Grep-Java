@@ -1,61 +1,59 @@
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.LineNumberReader;
-import java.io.Reader;
-
 public class Grep {
-	public static void main(String[] args) throws IOException {
+	
+	private char[][] automata;
+	
+	public Grep(char[][] automata) {	
 		
-		//String fileName = args[0];
-		String fileName = new String("file.txt");
-		String fileNameHtml = new String("fileHtml.txt");
-
-		grep(fileName);
-		grepHtml(fileNameHtml);
-
+		automata[0][1] = 'T';
+		automata[1][2] = 'a';
+		automata[2][2] = 'm';
+		automata[2][3] = 'u';
+		automata[3][4] = 'S';
+		automata[0][4] = 'E';
+		this.automata = automata;
 		
 	}
 
-	private static void grep(String fileName) throws IOException {
+	public boolean find(String line) {
 		
-		String line;
-		Reader input = new FileReader(new File(fileName));
-		LineNumberReader inputStream = new LineNumberReader(input);
-		char[][] automata = new char[5][5];
-		MyGrep m = new MyGrep(automata);
-		
-		while ((line = inputStream.readLine()) != null) {
+		for(int i = 0; i < line.length(); i++) {
 			
-			if (m.find(line)) {
-				System.out.println(inputStream.getLineNumber() + " : " + line);
+			if(accept(i, line)) {
+				return true;
 			}
 			
 		}
+		return false;
 		
-		inputStream.close();
-		input.close();
 	}
-	
-	
-	private static void grepHtml(String fileName) throws IOException {
+
+	private boolean accept(int i, String line) {
 		
-		String line;
-		Reader input = new FileReader(new File(fileName));
-		LineNumberReader inputStream = new LineNumberReader(input);
-		char[][] automata = new char[5][5];
-		MyGrep m = new MyGrep(automata);
+		int currentState = 0;
+		int indice = i;
+		boolean found = true;
 		
-		while ((line = inputStream.readLine()) != null) {
+		while(indice < line.length() && found) {
 			
-			if (m.find(line)) {
-				System.out.println(inputStream.getLineNumber() + " : " + line);
+			found = false;
+			for(int j = 0; j < 4; j++) {
+				
+				if(automata[currentState][j] == line.charAt(indice)) {
+					
+					found = true;
+					indice++;
+					currentState = j;
+					break;
+					
+				}
+				
 			}
 			
+			if(automata[currentState][4] == 'S') {
+				return true;
+			}
 		}
 		
-		inputStream.close();
-		input.close();
+		return false;
 	}
-	
 }

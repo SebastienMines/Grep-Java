@@ -58,14 +58,14 @@ public class Main {
 			
 			if (m.findHtml(line)) {
 				//System.out.println(inputStream.getLineNumber() + " : " + line);
-				String pattern = "(http|https)(:\\/\\/.*\")";
+				String pattern = "(http|https)(:\\/\\/.*)(\\\")";
 				Pattern r = Pattern.compile(pattern);
 				
 				Matcher ma = r.matcher(line);
 				String[] tab = null;
 				
 				if(ma.find( )) {
-					System.out.println(ma.group(0));
+					System.out.print(ma.group(0));
 					tab = ma.group(0).split("/");
 					
 					for(int i = 2; i < tab.length; i++){
@@ -85,9 +85,9 @@ public class Main {
 				Matcher ma2 = r2.matcher(line);
 				if(ma2.find( )) {
 					if(ma2.group(5) == null)
-						System.out.println(ma2.group(10)+" | "+ma2.group(0));
+						System.out.println(" | "+ma2.group(10)+" | "+ma2.group(0));
 					else
-						System.out.println(ma2.group(5)+" | "+ma2.group(0));
+						System.out.println(" | "+ma2.group(5)+" | "+ma2.group(0));
 				}
 				else {
 					//System.out.println("No match");

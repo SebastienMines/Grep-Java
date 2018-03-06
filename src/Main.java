@@ -55,7 +55,13 @@ public class Main {
 		while ((line = inputStream.readLine()) != null) {
 			
 			if (m.findHtml(line)) {
-				System.out.println(inputStream.getLineNumber() + " : " + line);
+				//System.out.println(inputStream.getLineNumber() + " : " + line);
+				String[] tab = line.split("<a href=\".*\">");
+				for(int i = 0; i < tab.length; i++){
+					System.out.println(inputStream.getLineNumber() + " : " + tab[i]);
+
+				}
+
 			}
 			
 		}

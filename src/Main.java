@@ -65,7 +65,7 @@ public class Main {
 				String[] tab = null;
 				
 				if(ma.find( )) {
-					System.out.print(ma.group(0));
+					System.out.print(ma.group(0).replace("\"",""));
 					tab = ma.group(0).split("/");
 					
 					for(int i = 2; i < tab.length; i++){

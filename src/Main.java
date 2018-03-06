@@ -11,7 +11,7 @@ public class Main {
 		String fileName = new String("file.txt");
 		String fileNameHtml = new String("fileHtml.txt");
 
-		//grep(fileName);
+		grep(fileName);
 		grepHtml(fileNameHtml);
 
 		
@@ -30,7 +30,7 @@ public class Main {
 		
 		while ((line = inputStream.readLine()) != null) {
 			
-			if (m.find(line)) {
+			if (m.findTamuse(line)) {
 				System.out.println(inputStream.getLineNumber() + " : " + line);
 			}
 			
@@ -54,7 +54,7 @@ public class Main {
 		
 		while ((line = inputStream.readLine()) != null) {
 			
-			if (m.find(line)) {
+			if (m.findHtml(line)) {
 				System.out.println(inputStream.getLineNumber() + " : " + line);
 			}
 			

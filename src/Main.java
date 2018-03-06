@@ -1,8 +1,11 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
+import java.io.Writer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +50,9 @@ public class Main {
 		
 		//Affiche le nom du fichier passé en param
 		System.out.println(fileName);
+		Writer output;
+		output = new BufferedWriter(new FileWriter("export.txt", true));  //clears file every time
+		
 					
 		String line;
 		Reader input = new FileReader(new File(fileName));
@@ -65,6 +71,7 @@ public class Main {
 				String[] tab = null;
 				
 				if(ma.find( )) {
+					output.append(ma.group(0).replace("\"",""));
 					System.out.print(ma.group(0).replace("\"",""));
 					tab = ma.group(0).split("/");
 					
@@ -84,19 +91,23 @@ public class Main {
 				
 				Matcher ma2 = r2.matcher(line);
 				if(ma2.find( )) {
-					if(ma2.group(5) == null)
+					if(ma2.group(5) == null) {
+						output.append(" | "+ma2.group(10)+" | "+ma2.group(0));
 						System.out.println(" | "+ma2.group(10)+" | "+ma2.group(0));
-					else
+					}
+					else {
+						output.append(" | "+ma2.group(5)+" | "+ma2.group(0));
 						System.out.println(" | "+ma2.group(5)+" | "+ma2.group(0));
+					}
+					output.append("\n");
 				}
 				else {
 					//System.out.println("No match");
 				}
-
 			}
 			
 		}
-		
+		output.close();
 		inputStream.close();
 		input.close();
 	}

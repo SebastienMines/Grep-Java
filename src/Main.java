@@ -58,20 +58,26 @@ public class Main {
 			
 			if (m.findHtml(line)) {
 				//System.out.println(inputStream.getLineNumber() + " : " + line);
-				String pattern = "(http)(:\\/\\/\\w*.)(\\d*)(\\w*.\\w*)";
+				String pattern = "(http|https)(:\\/\\/.*\")";
 				Pattern r = Pattern.compile(pattern);
 				
 				Matcher ma = r.matcher(line);
+				String[] tab = null;
+				
 				if(ma.find( )) {
 					System.out.println(ma.group(0));
+					tab = ma.group(0).split("/");
+					
+					for(int i = 2; i < tab.length; i++){
+						
+						if( i >= 2) {
+							System.out.println(inputStream.getLineNumber() + " : " + tab[i] + "/");
+						}
+					}
 				}
 				else {
 					System.out.println("No match");
 				}
-//				String[] tab = line.split("<a href=\".*\">");
-//				for(int i = 0; i < tab.length; i++){
-//					System.out.println(inputStream.getLineNumber() + " : " + tab[i]);
-//				}
 
 			}
 			

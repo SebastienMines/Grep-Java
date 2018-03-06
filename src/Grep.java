@@ -2,14 +2,22 @@ public class Grep {
 	
 	private char[][] automata;
 	
-	public Grep(char[][] automata) {	
+	public Grep(char[][] automata, String regex) {	
 		
-		automata[0][1] = 'T';
-		automata[1][2] = 'a';
-		automata[2][2] = 'm';
-		automata[2][3] = 'u';
-		automata[3][4] = 'S';
-		automata[0][4] = 'E';
+		char[] cle = regex.toCharArray();
+		
+		//Affiche la regex passée en paramètre de facon découpée
+		for(int i = 0; i<cle.length;i++) {
+			System.out.println("regex: "+ i +" "+ cle[i]);
+		}
+		
+		automata[0][1] = cle[0];
+		automata[1][2] = cle[1];
+		automata[2][2] = cle[2];
+		automata[2][3] = cle[3];
+		automata[3][4] = cle[4];
+		automata[0][4] = cle[5];
+		
 		this.automata = automata;
 		
 	}

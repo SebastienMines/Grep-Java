@@ -11,7 +11,7 @@ public class Main {
 		String fileName = new String("file.txt");
 		String fileNameHtml = new String("fileHtml.txt");
 
-		grep(fileName);
+		//grep(fileName);
 		grepHtml(fileNameHtml);
 
 		
@@ -19,11 +19,14 @@ public class Main {
 
 	private static void grep(String fileName) throws IOException {
 		
+		//Affiche le nom du fichier passé en param
+		System.out.println(fileName);
+		
 		String line;
 		Reader input = new FileReader(new File(fileName));
 		LineNumberReader inputStream = new LineNumberReader(input);
 		char[][] automata = new char[5][5];
-		Grep m = new Grep(automata);
+		Grep m = new Grep(automata,"TamuSE");
 		
 		while ((line = inputStream.readLine()) != null) {
 			
@@ -40,11 +43,14 @@ public class Main {
 	
 	private static void grepHtml(String fileName) throws IOException {
 		
+		//Affiche le nom du fichier passé en param
+		System.out.println(fileName);
+					
 		String line;
 		Reader input = new FileReader(new File(fileName));
 		LineNumberReader inputStream = new LineNumberReader(input);
 		char[][] automata = new char[5][5];
-		Grep m = new Grep(automata);
+		Grep m = new Grep(automata,"a href");
 		
 		while ((line = inputStream.readLine()) != null) {
 			

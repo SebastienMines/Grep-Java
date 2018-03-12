@@ -35,10 +35,12 @@ public class Main {
 				}
 			}
 			tab_indice[line] = (float)(V - 1) / somme_distance;
-			System.out.println(tab_indice[line]);
+			//System.out.println(tab_indice[line]);
 		}
 		
+		//Normalisation entre 0 et 1
 		double min_indice = tab_indice[0];
+		
 		for (int i = 1; i < 62; i++) {
 			if(tab_indice[i] < min_indice) {
 				min_indice = tab_indice[i];
@@ -57,7 +59,7 @@ public class Main {
 		}
 
 		for (int i = 0; i < 62; i++) {
-//			System.out.println(tab_indice[i]);
+			System.out.println(tab_indice[i]);
 		}
 					
 	}

@@ -62,6 +62,7 @@ public class Main {
 		output = new BufferedWriter(new FileWriter("closeness.txt", true));  //clears file every time
 		
 		for (int i = 0; i < 62; i++) {
+			System.out.println(i+" : ");
 			System.out.println(tab_indice[i]);
 			output.write(tab_indice[i] + "\n");
 		}

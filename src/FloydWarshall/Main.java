@@ -29,6 +29,12 @@ public class Main {
 		Reader input = new FileReader(new File(fileName));
 		LineNumberReader inputStream = new LineNumberReader(input);
 		
+		while ((line = inputStream.readLine()) != null) {
+			
+			System.out.println(inputStream.getLineNumber() + " : " + line);
+			
+		}
+		
 		inputStream.close();
 		input.close();
 	}

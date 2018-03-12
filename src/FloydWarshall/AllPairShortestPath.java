@@ -11,8 +11,7 @@ class AllPairShortestPath
 {
  final static int INF = 99999, V = 61;
 
- void floydWarshall(int graph[][])
- {
+ void floydWarshall(int graph[][]) throws IOException {
      int dist[][] = new int[V][V];
      int i, j, k;
 
@@ -54,44 +53,34 @@ class AllPairShortestPath
      printSolution(dist);
  }
 
- void printSolution(int dist[][])
- {
+ void printSolution(int dist[][]) throws IOException {
+ 
+	 
+	 Writer output;
+	 output = new BufferedWriter(new FileWriter("ResultatFloydWarshall.txt", true));  //clears file every time
+	 
      System.out.println("Following matrix shows the shortest "+
                       "distances between every pair of vertices");
      for (int i=0; i<V; ++i)
      {
          for (int j=0; j<V; ++j)
          {
-             if (dist[i][j]==INF)
+             if (dist[i][j]==INF) {
+            	 output.append("INF ");
                  System.out.print("INF ");
-             else
+             }	
+             else {
+            	 output.append(dist[i][j]+"   ");
                  System.out.print(dist[i][j]+"   ");
+             }
+ 				 
          }
+         output.append("\n");
          System.out.println();
      }
- }
+     
+	output.close();
 
- // Driver program to test above function
- public static void main (String[] args)
- {
-     /* Let us create the following weighted graph
-        10
-     (0)------->(3)
-     |         /|\
-     5 |          |
-     |          | 1
-     \|/         |
-     (1)------->(2)
-        3           */
-     int graph[][] = { {0,   5,  INF, 10},
-                       {INF, 0,   3, INF},
-                       {INF, INF, 0,   1},
-                       {INF, INF, INF, 0}
-                     };
-     AllPairShortestPath a = new AllPairShortestPath();
-
-     // Print the solution
-     a.floydWarshall(graph);
  }
 }
 

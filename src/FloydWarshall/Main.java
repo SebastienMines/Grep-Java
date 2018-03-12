@@ -40,7 +40,7 @@ public class Main {
 		
 			secondes = line.split(" ");
 			
-			if(Integer.parseInt(secondes[2]) >= 1200 && Integer.parseInt(secondes[2]) <= 2400) {
+			if(Integer.parseInt(secondes[2]) >= 0 && Integer.parseInt(secondes[2]) <= 2400) {
 				
 				//System.out.println(line);
 				output.append(line + "\n");
@@ -63,12 +63,12 @@ public class Main {
 		LineNumberReader inputStream = new LineNumberReader(input);
 		int[][] matrice = new int[61][61];
 		
-		//init matrice à 0
+		//init matrice à INF
 		for (int i = 0; i < 61; i++) {
 			
 		    for (int j = 0; j < 61; j++) {
 		    	
-		    	matrice[i][j] = 0;
+		    	matrice[i][j] = 99999;
 		    }
 		    
 		}

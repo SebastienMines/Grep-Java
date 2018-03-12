@@ -9,7 +9,7 @@ import java.io.*;
 
 class AllPairShortestPath
 {
- final static int INF = 99999, V = 4;
+ final static int INF = 99999, V = 61;
 
  void floydWarshall(int graph[][])
  {

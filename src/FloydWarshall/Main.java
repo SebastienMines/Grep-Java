@@ -16,11 +16,10 @@ public class Main {
 		String fileName = new String("rollernet.dyn");
 
 		extract(fileName);
-		
-		traitment();
+		int[][] graph = traitment();
 		
 		AllPairShortestPath algo = new AllPairShortestPath();
-		//algo.floydWarshall(graph);
+		algo.floydWarshall(graph);
 		
 	}
 
@@ -56,11 +55,15 @@ public class Main {
 	
 	private static int[][] traitment() throws IOException {
 		
+		Writer output;
+		output = new BufferedWriter(new FileWriter("MatriceFloydWarshall.txt", true));  //clears file every time
+		
 		String line;
 		Reader input = new FileReader(new File("exportFloydWarshall.txt"));
 		LineNumberReader inputStream = new LineNumberReader(input);
 		int[][] matrice = new int[61][61];
 		
+		//init matrice à 0
 		for (int i = 0; i < 61; i++) {
 			
 		    for (int j = 0; j < 61; j++) {
@@ -71,22 +74,22 @@ public class Main {
 		}
 		
 		String[] split;
+		int noeud1;
+		int noeud2;
 			
 		while ((line = inputStream.readLine()) != null) {
 			
 			split = line.split(" ");
+			noeud1 = Integer.parseInt(split[0]);
+			noeud2 = Integer.parseInt(split[1]);
 			
 			//Parcours la matrice en hauteur
 			for(int rows = 0; rows < 61; rows++) {
 				
-				if(rows == Integer.parseInt(split[0])) {
-					matrice[rows][0] = 1;
-				}
-				
 				//Parcours la matrice en largeur
 				for(int col = 0; col < 61; col++) {
 					
-					if(col == Integer.parseInt(split[1])) {
+					if(rows == noeud1 && col == noeud2) {
 						matrice[rows][col] = 1;
 					}
 			
@@ -98,11 +101,14 @@ public class Main {
 				
 		for (int i = 0; i < matrice.length; i++) {
 		    for (int j = 0; j < matrice[i].length; j++) {
-		        System.out.print(matrice[i][j] + " ");
+		        //System.out.print(matrice[i][j] + " ");
+				output.append(matrice[i][j] + " ");
 		    }
-		    System.out.println();
+		    //System.out.println();
+			output.append("\n");
 		}
 		
+		output.close();
 		inputStream.close();
 		input.close();
 		

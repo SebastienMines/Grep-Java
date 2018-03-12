@@ -40,7 +40,7 @@ public class Main {
 		
 			secondes = line.split(" ");
 			
-			if(Integer.parseInt(secondes[2]) >= 0 && Integer.parseInt(secondes[2]) <= 2400) {
+			if(Integer.parseInt(secondes[2]) >= 15*60 && Integer.parseInt(secondes[2]) <= 45*60) {
 				
 				//System.out.println(line);
 				output.append(line + "\n");
@@ -61,7 +61,7 @@ public class Main {
 		String line;
 		Reader input = new FileReader(new File("exportFloydWarshall.txt"));
 		LineNumberReader inputStream = new LineNumberReader(input);
-		int[][] matrice = new int[61][61];
+		int[][] matrice = new int[62][62];
 		
 		//init matrice à INF
 		for (int i = 0; i < 61; i++) {

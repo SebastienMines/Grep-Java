@@ -82,7 +82,7 @@ public class Main {
 			if(Integer.parseInt(secondes[2]) >= 15*60 && Integer.parseInt(secondes[2]) <= 45*60) {
 				
 				//System.out.println(line);
-				output.append(line + "\n");
+				output.write(line + "\n");
 			}
 			
 		}
@@ -154,10 +154,10 @@ public class Main {
 		for (int i = 0; i < matrice.length; i++) {
 		    for (int j = 0; j < matrice[i].length; j++) {
 		        //System.out.print(matrice[i][j] + " ");
-				output.append(matrice[i][j] + " ");
+				output.write(matrice[i][j] + " ");
 		    }
 		    //System.out.println();
-			output.append("\n");
+			output.write("\n");
 		}
 		
 		output.close();

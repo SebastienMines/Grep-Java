@@ -70,16 +70,16 @@ class AllPairShortestPath
          for (int j=0; j<V; ++j)
          {
              if (dist[i][j]==INF) {
-            	 output.append("INF ");
+            	 output.write("INF ");
                  System.out.print("INF ");
              }	
              else {
-            	 output.append(dist[i][j]+"   ");
+            	 output.write(dist[i][j]+"   ");
                  System.out.print(dist[i][j]+"   ");
              }
  				 
          }
-         output.append("\n");
+         output.write("\n");
          System.out.println();
      }
      

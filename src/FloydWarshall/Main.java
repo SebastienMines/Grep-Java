@@ -41,7 +41,7 @@ public class Main {
 		
 			secondes = line.split(" ");
 			
-			if(Integer.parseInt(secondes[2]) >= 1200 && Integer.parseInt(secondes[2]) <= 1205) {
+			if(Integer.parseInt(secondes[2]) >= 1200 && Integer.parseInt(secondes[2]) <= 2400) {
 				
 				//System.out.println(line);
 				output.append(line + "\n");

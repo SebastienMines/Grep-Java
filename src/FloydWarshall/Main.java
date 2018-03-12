@@ -34,7 +34,8 @@ public class Main {
 					somme_distance += fw_matrix[line][col];
 				}
 			}
-			tab_indice[line] = (V - 1) / somme_distance;
+			tab_indice[line] = (float)(V - 1) / somme_distance;
+			System.out.println(tab_indice[line]);
 		}
 		
 		double min_indice = tab_indice[0];
@@ -56,7 +57,7 @@ public class Main {
 		}
 
 		for (int i = 0; i < 62; i++) {
-			System.out.println(tab_indice[i]);
+//			System.out.println(tab_indice[i]);
 		}
 					
 	}

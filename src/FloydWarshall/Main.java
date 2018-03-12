@@ -57,11 +57,17 @@ public class Main {
 		for (int i = 1; i < 62; i++) {
 			tab_indice[i] = (tab_indice[i] - min_indice) / (max_indice - min_indice);
 		}
-
+		
+		Writer output;
+		output = new BufferedWriter(new FileWriter("closeness.txt", true));  //clears file every time
+		
 		for (int i = 0; i < 62; i++) {
 			System.out.println(tab_indice[i]);
+			output.write(tab_indice[i] + "\n");
 		}
-					
+		
+		output.close();
+		
 	}
 
 	private static void extract(String fileName) throws IOException {

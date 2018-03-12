@@ -9,9 +9,9 @@ import java.io.*;
 
 class AllPairShortestPath
 {
- final static int INF = 99999, V = 61;
+ final static int INF = 99999, V = 62;
 
- void floydWarshall(int graph[][]) throws IOException {
+ int[][] floydWarshall(int graph[][]) throws IOException {
      int dist[][] = new int[V][V];
      int i, j, k;
 
@@ -43,14 +43,18 @@ class AllPairShortestPath
              {
                  // If vertex k is on the shortest path from
                  // i to j, then update the value of dist[i][j]
-                 if (dist[i][k] + dist[k][j] < dist[i][j])
-                     dist[i][j] = dist[i][k] + dist[k][j];
-             }
+            	 if (dist[i][k] != INF && dist[k][j] != INF) {
+	                if (dist[i][k] + dist[k][j] < dist[i][j])
+	                     dist[i][j] = dist[i][k] + dist[k][j];
+            	 	}
+	             }
          }
      }
 
      // Print the shortest distance matrix
      printSolution(dist);
+     
+     return dist;
  }
 
  void printSolution(int dist[][]) throws IOException {

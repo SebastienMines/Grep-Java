@@ -9,8 +9,12 @@ import java.io.Reader;
 import java.io.Writer;
 
 public class Main {
-	
+	private final static int INF = 99999, V = 62;
+
 	public static void main(String[] args) throws IOException {
+		
+
+		double[] tab_indice = new double[62];
 		
 		//String fileName = args[0];
 		String fileName = new String("rollernet.dyn");
@@ -19,8 +23,42 @@ public class Main {
 		int[][] graph = traitment();
 		
 		AllPairShortestPath algo = new AllPairShortestPath();
-		algo.floydWarshall(graph);
+		//algo.floydWarshall(graph);
 		
+		int[][] fw_matrix = algo.floydWarshall(graph);
+		
+		for (int line = 0; line < 62; line++) {
+			int somme_distance = 0;
+			for (int col = 0; col < 62; col++) {
+				if (col != line) {
+					somme_distance += fw_matrix[line][col];
+				}
+			}
+			tab_indice[line] = (V - 1) / somme_distance;
+		}
+		
+		double min_indice = tab_indice[0];
+		for (int i = 1; i < 62; i++) {
+			if(tab_indice[i] < min_indice) {
+				min_indice = tab_indice[i];
+			}
+		}
+		
+		double max_indice = tab_indice[0];
+		for (int i = 1; i < 62; i++) {
+			if(tab_indice[i] > max_indice) {
+				max_indice = tab_indice[i];
+			}
+		}
+		
+		for (int i = 1; i < 62; i++) {
+			tab_indice[i] = (tab_indice[i] - min_indice) / (max_indice - min_indice);
+		}
+
+		for (int i = 0; i < 62; i++) {
+			System.out.println(tab_indice[i]);
+		}
+					
 	}
 
 	private static void extract(String fileName) throws IOException {
@@ -64,9 +102,9 @@ public class Main {
 		int[][] matrice = new int[62][62];
 		
 		//init matrice à INF
-		for (int i = 0; i < 61; i++) {
+		for (int i = 0; i < 62; i++) {
 			
-		    for (int j = 0; j < 61; j++) {
+		    for (int j = 0; j < 62; j++) {
 		    	
 		    	matrice[i][j] = 99999;
 		    }
@@ -84,19 +122,32 @@ public class Main {
 			noeud2 = Integer.parseInt(split[1]);
 			
 			//Parcours la matrice en hauteur
-			for(int rows = 0; rows < 61; rows++) {
+			for(int rows = 0; rows < 62; rows++) {
 				
 				//Parcours la matrice en largeur
-				for(int col = 0; col < 61; col++) {
+				for(int col = 0; col < 62; col++) {
 					
 					if(rows == noeud1 && col == noeud2) {
 						matrice[rows][col] = 1;
+						matrice[col][rows] = 1;
 					}
 			
 				}
 					
 			}
 						
+		}
+		
+		//init matrice à INF
+		for (int i = 0; i < 62; i++) {
+			
+		    for (int j = 0; j < 62; j++) {
+		    	
+		    	if(i == j) {
+			    	matrice[i][j] = 0;
+		    	}
+		    }
+		    
 		}
 				
 		for (int i = 0; i < matrice.length; i++) {

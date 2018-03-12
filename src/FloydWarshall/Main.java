@@ -9,12 +9,18 @@ import java.io.Reader;
 import java.io.Writer;
 
 public class Main {
+	
 	public static void main(String[] args) throws IOException {
 		
 		//String fileName = args[0];
 		String fileName = new String("rollernet.dyn");
 
 		extract(fileName);
+		
+		traitment();
+		
+		AllPairShortestPath algo = new AllPairShortestPath();
+		algo.floydWarshall(graph);
 		
 	}
 
@@ -23,13 +29,14 @@ public class Main {
 		//Affiche le nom du fichier passé en param
 		System.out.println(fileName);
 		
+		Writer output;
+		output = new BufferedWriter(new FileWriter("exportFloydWarshall.txt", true));  //clears file every time
+		
 		String line;
 		Reader input = new FileReader(new File(fileName));
 		LineNumberReader inputStream = new LineNumberReader(input);
 		String[] secondes;
-		Writer output;
-		output = new BufferedWriter(new FileWriter("exportFloydWarshall.txt", true));  //clears file every time
-		
+			
 		while ((line = inputStream.readLine()) != null) {
 		
 			secondes = line.split(" ");
@@ -43,6 +50,22 @@ public class Main {
 		}
 		
 		output.close();
+		inputStream.close();
+		input.close();
+	}
+	
+	private static void traitment() throws IOException {
+		
+		String line;
+		Reader input = new FileReader(new File("exportFloydWarshall.txt"));
+		LineNumberReader inputStream = new LineNumberReader(input);
+			
+		while ((line = inputStream.readLine()) != null) {
+
+			System.out.println(line);
+			
+		}
+		
 		inputStream.close();
 		input.close();
 	}

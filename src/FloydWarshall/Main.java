@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -28,13 +26,23 @@ public class Main {
 		String line;
 		Reader input = new FileReader(new File(fileName));
 		LineNumberReader inputStream = new LineNumberReader(input);
+		String[] secondes;
+		Writer output;
+		output = new BufferedWriter(new FileWriter("exportFloydWarshall.txt", true));  //clears file every time
 		
 		while ((line = inputStream.readLine()) != null) {
+		
+			secondes = line.split(" ");
 			
-			System.out.println(inputStream.getLineNumber() + " : " + line);
+			if(Integer.parseInt(secondes[2]) >= 1200 && Integer.parseInt(secondes[2]) <= 1800) {
+				
+				System.out.println(line);
+				output.append(line + "\n");
+			}
 			
 		}
 		
+		output.close();
 		inputStream.close();
 		input.close();
 	}

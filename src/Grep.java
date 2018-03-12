@@ -1,133 +1,134 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Grep {
 	
-	private String regex;
-	private String file;
-	private String texte;
+	private char[][] automata;
 	
-	public Grep(String regex, String file) {
-		this.regex = new String(regex);
-		this.file = new String(file);
-		this.texte = new String("");
+	public Grep(char[][] automata, String regex) {	
+		
+		char[] cle = regex.toCharArray();
+		
+		//Affiche la regex passée en paramètre de facon découpée
+		for(int i = 0; i < cle.length; i++) {
+			System.out.println("regex: "+ i +" "+ cle[i]);
+		}
+		
+		//colonne = position du caractère dans l'automate
+		//ligne = la ou commence le mot
+		if(regex.equals("TamuSE")) {
+			
+			automata[0][1] = cle[0]; //T
+			automata[1][2] = cle[1]; //a
+			automata[2][2] = cle[2]; //m
+			automata[2][3] = cle[3]; //u
+			automata[3][4] = cle[4]; //S
+			automata[0][4] = cle[5]; //E
+			
+		}else if(regex.equals("a href")){
+			automata[0][1] = cle[0]; //a
+			automata[1][2] = cle[1]; //
+			automata[2][1] = cle[2]; //h
+			automata[2][2] = cle[3]; //r
+			automata[2][3] = cle[4]; //e
+			automata[2][4] = cle[5]; //f
+			
+		}
+		
+		
+		for(int i = 0 ; i < automata.length; i++ ){  
+			
+		     for(int j = 0; j< automata[i].length; j++){   
+		         System.out.print(automata[i][j]); 
+		     } 
+		     
+		System.out.println(); 
+		}  
+		
+		this.automata = automata;
+		
 	}
 
-	public void splitText(String line) {
-//		char[][] res = 
-//			{
-//					{'T', 0, 0, 0, 0, 0},
-//					{0,'a', 0, 0, 0, 0},
-//					{0, 0, 'm', 0, 0, 0},
-//					{0, 0, 0, 'm', 0, 0},
-//					{0, 0, 0, 0, 'u', 0},
-//					{0, 0, 0, 0, 0, 'z'}
-//			};
-//		// TODO Auto-generated method stub
-//		char[] regex = this.getRegex().toCharArray();
-//		char[] x = line.toCharArray();
-//		
-//		for(int i=0; i<x.length; i++) {
-//			//System.out.println(lineSplit[i]);
-//			for(int j=0; j<this.regex.length(); j++) {
-//				//System.out.println("Bla");
-//				if(res[j][j] == x[i+1]) {
-//					System.out.println(res[j][j]+" - "+x[i+j]);
-//				}
-//			}
-//		}
-		try {
-
-			// TODO Auto-generated method stub
-			char[] regex = this.getRegex().toCharArray();
-			char[] x = line.toCharArray();
+	public boolean findTamuse(String line) {
+		
+		for(int i = 0; i < line.length(); i++) {
 			
-			for(int i=0; i<x.length; i++) {
-				//System.out.println(lineSplit[i]);
-				if(x[i] == 'T') {
-					//System.out.println(i+"T");
-	
-					if(x[i+1] == 'a') {
-						//System.out.println(i+1+"a");
-	
-						if(x[i+2] == 'm') {
-							//System.out.println(i+2+"m");
-	
-							if(x[i+4] == 'u') {
-								//System.out.println(i+4+"u");
-								
-								if(x[i+5] == 'z') {
-									//System.out.println(i+5+"z");
-									
-									for(int j=0;j<6;j++) {
-										System.out.println(x[i+j]);
-									}
-									
-									System.out.println("true");
-								}
-							}
-						}
-					}
-				}
+			if(accept(i, line)) {
+				return true;
 			}
-		}catch(ArrayIndexOutOfBoundsException | NullPointerException e) {
-
+			
 		}
+		return false;
+		
 	}
 	
-	public void readFile() throws IOException {
+	public boolean findHtml(String line) {
 		
-		BufferedReader br = new BufferedReader(new FileReader(this.file));
-		
-		try {
+		for(int i = 0; i < line.length(); i++) {
 			
-		    StringBuilder sb = new StringBuilder();
-		    this.setTexte(this.getTexte() + br.readLine());
-		    String line = br.readLine();
-
-		    while (line != null) {
-		    	
-		        sb.append(line);
-		        sb.append(System.lineSeparator());
-		        line = br.readLine();
-			    this.setTexte(this.getTexte() + br.readLine());
-
-		        //System.out.println(line);
-		        splitText(this.texte);
-		        
-		    }
-		    
-		    //this.texte = sb.toString();
-		    
-		} finally {
-		    br.close();
+			if(acceptHtml(i, line)) {
+				return true;
+			}
+			
 		}
-	}
-
-	public String getRegex() {
-		return regex;
-	}
-
-	public void setRegex(String regex) {
-		this.regex = regex;
-	}
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
-
-	public String getTexte() {
-		return texte;
-	}
-
-	public void setTexte(String texte) {
-		this.texte = texte;
-	}
+		return false;
 		
+	}
+
+	private boolean accept(int i, String line) {
+		
+		int currentState = 0;
+		int indice = i;
+		boolean found = true;
+		
+		while(indice < line.length() && found) {
+			
+			found = false;
+			for(int j = 0; j < 4; j++) {
+				
+				if(automata[currentState][j] == line.charAt(indice)) {
+					
+					found = true;
+					indice++;
+					currentState = j;
+					break;
+					
+				}
+				
+			}
+			
+			if(automata[currentState][4] == 'S') {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private boolean acceptHtml(int i, String line) {
+		
+		int currentState = 0;
+		int indice = i;
+		boolean found = true;
+		
+		while(indice < line.length() && found) {
+			
+			found = false;
+			for(int j = 0; j < 4; j++) {
+				
+				if(automata[currentState][j] == line.charAt(indice)) {
+					
+					found = true;
+					indice++;
+					currentState = j;
+					break;
+					
+				}
+				
+			}
+			
+			if(automata[currentState][4] == 'f') {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

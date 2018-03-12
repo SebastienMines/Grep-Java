@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 //EN">
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=iso-8859-1">
+  <title>INSTA -- Moteur de recherche</title>
+  <style type="text/css" media="screen">
+    @import "binspage.css";
+  </style>
+</head>
+<body>
+<table border="0" width="90%" align="center">
+  <tbody>
+    <tr>
+      <h1>INSTA -- Moteur de recherche</h1>
+      <hr>
+    </tr>
+    <tr>
+      <h2>S&eacute;ance 2: Transformations d'automates</h2>
+      <ul>
+	<li>
+	    Notions importantes: d&eacute;terminisation, minimisation.
+	    <br/>
+	</li>
+	<li>
+	    TME: cloner grep (2).
+		Deuxi&egrave;me s&eacute;ance pour le clone de la commande UNIX grep: epsilon transition, d&eacute;terminisation, minimisation na&iuml;ve d'automate.
+	    <br/>
+	</li>
+      </ul>
+      <h2>S&eacute;ance 1: Expressions r&eacute;guli&egrave;res</h2>
+      <ul>
+	<li>
+	    Notions importantes: arbre, automate,
+<span style="font-style: italic;">pretty printer</span>
+pour le
+<span style="font-style: italic;">debugging</span>.
+	    <br/>
+            <ul>
+	      <li>
+	        Ce cours s'inspire du
+	        <a href="http://infolab.stanford.edu/~ullman/focs.html">chapitre 10 du livre Aho-Ullma</a>.
+	      </li>
+            </ul>
+	</li>
+	<li>
+	    TME: cloner grep (1).
+		Premi&egrave;re s&eacute;ance pour le clone de la commande UNIX grep: algorithme na&iuml;f.
+	    <br/>
+            <ul>
+	      <li>
+	        Lire les sp&eacute;cifications des
+<span style="font-style: italic;">Extended Regular Expressions</span>
+	        <a href="http://pubs.opengroup.org/onlinepubs/7908799/xbd/re.html">ici</a>.
+	      </li>
+	      <li>
+	        Tester son impl&eacute;mentation avec un gros fichier textuel,
+	        <a href="http://www.gutenberg.org/files/56667/56667-0.txt">celui-ci par exemple</a>.
+		Si le lien ne marche pas, on peut essayer
+	        <a href="https://www-apr.lip6.fr/~buixuan/files/56667-0.txt">celui-ci</a>.
+	      </li>
+            </ul>
+	</li>
+      </ul>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
